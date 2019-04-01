@@ -1,0 +1,9 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#mycanvas{
+    background-color: yellowgreen;
+    /* position: relative; */
+}
+
