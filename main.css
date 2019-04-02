@@ -6,4 +6,27 @@ body{
     background-color: yellowgreen;
     /* position: relative; */
 }
+.container{
+    position: relative;
+    display: block;
+}
+.actions{
+    position: absolute;
+    display: inline-block;
+    left: 20px;
+    bottom: 20px;
+}
+.actions .brush{
+    display: none;
+}
+.actions .eraser{
+    display: inline-block;
+}
+.actions.x .brush{
+    display: inline-block;
+}
+.actions.x .eraser{
+    display: none;
+}
+
 
