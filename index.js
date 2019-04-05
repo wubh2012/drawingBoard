@@ -9,12 +9,13 @@ var drawLine = function (x1, y1, x2, y2) {
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
     ctx.lineWidth = 5
+    // 先 closePath 方法闭合，然后调用 stroke, 这样画出的线就不会有很多的毛边
     ctx.closePath()
     ctx.stroke()
 }
 
 var clearArea = function (x, y) {
-    ctx.clearRect(x, y, 20, 20);
+    ctx.clearRect(x, y, 20, 20)
 }
 
 var listenerCanvas = function (canvas) {
@@ -23,26 +24,16 @@ var listenerCanvas = function (canvas) {
         x: undefined,
         y: undefined,
     }
-    canvas.onmousedown = function (event) {
-        log('mouse down', event)
+    var handlestart = function (x, y) {
         isMoveing = true
-        var x = event.x
-        var y = event.y
         lastPoint = {
             x: x,
             y: y,
         }
     }
-
-    canvas.onmousemove = function (event) {
+    var handlemove = function (newPoint) {
         if (!isMoveing) {
             return
-        }
-        var x = event.x
-        var y = event.y
-        var newPoint = {
-            x: x,
-            y: y,
         }
         if (earserEnable) {
             // 擦除
@@ -52,11 +43,46 @@ var listenerCanvas = function (canvas) {
             drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
         }
         lastPoint = newPoint
-
     }
-
-    canvas.onmouseup = function (event) {
+    var handleend = function () {
         isMoveing = false
+    }
+    if (document.ontouchstart === undefined) {
+        log('当前是PC端模式')
+        canvas.onmousedown = function (event) {
+            var x = event.x
+            var y = event.y
+            handlestart(x, y)
+        }
+
+        canvas.onmousemove = function (event) {
+            var x = event.x
+            var y = event.y
+            var newPoint = {
+                x: x,
+                y: y,
+            }
+            handlemove(newPoint)
+        }
+
+        canvas.onmouseup = handleend
+    } else {
+        log('当前是移动端模式')
+        canvas.ontouchstart = function (touchevent) {
+            var x = touchevent.touches[0].clientX
+            var y = touchevent.touches[0].clientY
+            handlestart(x, y)
+        }
+        canvas.ontouchmove = function (touchevent) {
+            var x = touchevent.touches[0].clientX
+            var y = touchevent.touches[0].clientY
+            var newPoint = {
+                x: x,
+                y: y,
+            }
+            handlemove(newPoint)
+        }
+        canvas.ontouchend = handleend
     }
 
 }

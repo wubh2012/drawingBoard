@@ -9,8 +9,7 @@ body{
     background-color: yellowgreen;
 }
 .container{
-    /* position: relative; */
-    
+    position: relative;    
 }
 .actions{
     position: absolute;
