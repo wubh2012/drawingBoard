@@ -8,9 +8,9 @@ var drawLine = function (x1, y1, x2, y2) {
     ctx.beginPath()
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
-    ctx.stroke()
     ctx.lineWidth = 5
     ctx.closePath()
+    ctx.stroke()
 }
 
 var clearArea = function (x, y) {
@@ -79,7 +79,7 @@ var autoSetCanvasSize = function (canvas) {
     var setCanvasSize = function () {
         var width = document.documentElement.clientWidth
         var height = document.documentElement.clientHeight
-        log(`width: ${width}, height: ${height}`)
+        log(`当前页面 width: ${width}, height: ${height}`)
         canvas.width = width
         canvas.height = height
     }
