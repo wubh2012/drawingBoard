@@ -24,7 +24,9 @@ var listenerCanvas = function (canvas) {
         x: undefined,
         y: undefined,
     }
+    var headY = 110
     var handlestart = function (x, y) {
+
         isMoveing = true
         lastPoint = {
             x: x,
@@ -50,14 +52,15 @@ var listenerCanvas = function (canvas) {
     if (document.ontouchstart === undefined) {
         log('当前是PC端模式')
         canvas.onmousedown = function (event) {
-            var x = event.x
-            var y = event.y
+            var x = event.clientX
+            var y = event.clientY - headY
+            log('mousedown', x, y, event)
             handlestart(x, y)
         }
 
         canvas.onmousemove = function (event) {
-            var x = event.x
-            var y = event.y
+            var x = event.clientX
+            var y = event.clientY - headY
             var newPoint = {
                 x: x,
                 y: y,
@@ -90,14 +93,11 @@ var listenerCanvas = function (canvas) {
 var listenerActions = function () {
     var earserButton = document.querySelector('.eraser')
     var brushButton = document.querySelector('.brush')
-    var actionsContainer = document.querySelector('.actions')
     earserButton.addEventListener('click', function () {
         earserEnable = true
-        actionsContainer.classList.add('x')
     })
     brushButton.addEventListener('click', function () {
         earserEnable = false
-        actionsContainer.classList.remove('x')
     })
 }
 

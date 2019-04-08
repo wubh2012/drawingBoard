@@ -5,17 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>画板</title>
+    <title>在线画板</title>
     <link rel="stylesheet" href="./main.css">
+    <style type="text/css">
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+    <script src="//at.alicdn.com/t/font_1127882_xj2954wa4kg.js"></script>
 </head>
 
 <body>
+    <div class="header">在线画板</div>
     <div class="container">
-        <canvas id="mycanvas" width="600" height="300"></canvas>
-        <div class="actions">
-            <button class="brush">画笔</button>
-            <button class="eraser">橡皮檫</button>
+        <div class="nav clearfix">
+            <div class="left">
+                <button>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="right">
+                <div>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-save"></use>
+                    </svg>
+                    保存
+                </div>
+
+            </div>
+            <div class="middle">
+                <button class="brush">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-pencil1"></use>
+                    </svg>
+                </button>
+                <button class="eraser">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-eraser"></use>
+                    </svg>
+
+                </button>
+                <div class="pensettings thickness"></div>
+                <div id="thicknes-panel"></div>
+                <div class="colors">
+                    <button class="black"></button>
+                    <button class="grey"></button>
+                    <button class="blue"></button>
+                    <button class="red"></button>
+                    <button class="green"></button>
+                    <button class="yellow"></button>
+                </div>
+            </div>
         </div>
+
+        <canvas id="mycanvas" width="600" height="300"></canvas>
+
     </div>
     <script src="./index.js"></script>
 

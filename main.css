@@ -1,33 +1,93 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-body{
+
+body {
     overflow: hidden;
 }
-#mycanvas{
-    background-color: yellowgreen;
-}
-.container{
-    position: relative;    
-}
-.actions{
-    position: absolute;
-    /* display: inline-block; */
-    left: 20px;
-    bottom: 20px;
-}
-.actions .brush{
-    display: none;
-}
-.actions .eraser{
-    display: inline-block;
-}
-.actions.x .brush{
-    display: inline-block;
-}
-.actions.x .eraser{
-    display: none;
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
 }
 
+#mycanvas {
+    background-size: 18px 18px;
+    background-image: linear-gradient(to right, #f5f6f7 1px, transparent 1px),
+        linear-gradient(to bottom, #f5f6f7 1px, transparent 1px);
+}
 
+.header {
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    text-align: center;
+    font-size: 24px;
+    color: #131C26;
+}
+
+.container {
+    position: relative;
+}
+
+.container>.nav {
+    background-color: #fff;
+    border-bottom: 1px solid #D7DDE3;
+    padding: 10px 12px;
+}
+
+.container>.nav .left button,
+.container>.nav .middle button  {
+    width: 40px;
+    height: 40px;
+    padding: 8px auto;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: #1A9FFF;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.container>.nav .left{
+    float: left;
+    width: 100px;
+    text-align: left;
+}
+.container>.nav .middle{
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+.container>.nav .right{
+    float: right;
+    width: 100px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #cb4a32;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 16px
+}
+.container>.nav>.middle>.thickness{
+    display: inline-block;
+    vertical-align: top;
+}
+#thicknes-panel{
+    display: none;
+}
+.container .colors{
+    display: inline-block;
+    vertical-align: top;
+}
+.colors>button{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
