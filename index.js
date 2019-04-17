@@ -14,8 +14,10 @@ var drawLine = function (x1, y1, x2, y2) {
     ctx.stroke()
 }
 
-var clearArea = function (x, y) {
-    ctx.clearRect(x, y, 20, 20)
+var eraserArea = function (x, y) {
+    var rectregion = 10
+    var halfregion = rectregion / 2
+    ctx.clearRect(x - halfregion, y - halfregion, rectregion, rectregion)
 }
 
 var listenerCanvas = function (canvas) {
@@ -39,7 +41,7 @@ var listenerCanvas = function (canvas) {
         }
         if (earserEnable) {
             // 擦除
-            clearArea(lastPoint.x, lastPoint.y)
+            eraserArea(lastPoint.x, lastPoint.y)
         } else {
             // 画线
             drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
@@ -98,6 +100,16 @@ var listenerActions = function () {
     })
     brushButton.addEventListener('click', function () {
         earserEnable = false
+    })
+
+    var clearButton = document.querySelector('.clearCanvas')
+    clearButton.addEventListener('click', function(){
+        ctx.clearRect(0, 0, mycanvas.width, mycanvas.height)
+    })
+
+    var saveButton = document.querySelector('.saveCanvas')
+    saveButton.addEventListener('click', function(){
+        
     })
 }
 

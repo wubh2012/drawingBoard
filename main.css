@@ -41,7 +41,7 @@ body {
 }
 
 .container>.nav .left button,
-.container>.nav .middle button  {
+.container>.nav .middle button {
     width: 40px;
     height: 40px;
     padding: 8px auto;
@@ -54,20 +54,23 @@ body {
     cursor: pointer;
 }
 
-.container>.nav .left{
+.container>.nav .left {
     float: left;
     width: 100px;
     text-align: left;
 }
-.container>.nav .middle{
+
+.container>.nav .middle {
     margin-left: 100px;
     margin-right: 100px;
     text-align: center;
 }
-.container>.nav .right{
+
+.container>.nav .right {
     float: right;
     width: 100px;
     text-align: center;
+    border: none;
     border-radius: 3px;
     background-color: #cb4a32;
     cursor: pointer;
@@ -75,19 +78,55 @@ body {
     font-size: 18px;
     padding: 10px 16px
 }
-.container>.nav>.middle>.thickness{
+
+.container>.nav>.middle>.tools {
     display: inline-block;
     vertical-align: top;
 }
-#thicknes-panel{
+
+.container>.nav>.middle>.pensettings {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#thicknes-panel {
     display: none;
 }
-.container .colors{
-    display: inline-block;
-    vertical-align: top;
+
+
+
+.container>.nav .middle .colors button{
+    /* position: relative; */
 }
-.colors>button{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+.selected::after{
+    content: '✔';
+    position: absolute;
+    display: block;
+    transform: translateY(-50%);
+    /* top: 1px; */
+    /* left: 1px; */
+    border: 1px solid red;
+}
+.container>.nav>.middle>.colors>.black {
+    background-color: black;
+}
+
+.container>.nav .middle .colors>.grey {
+    background-color: grey;
+}
+
+.container>.nav .middle .colors>.blue {
+    background-color: blue;
+}
+
+.container>.nav .middle .colors>.red {
+    background-color: red;
+}
+
+.container>.nav .middle .colors>.green {
+    background-color: green;
+}
+
+.container>.nav .middle .colors>.yellow {
+    background-color: yellow;
 }
