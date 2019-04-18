@@ -94,39 +94,35 @@ body {
 }
 
 
-
-.container>.nav .middle .colors button{
-    /* position: relative; */
-}
 .selected::after{
     content: '✔';
     position: absolute;
     display: block;
-    transform: translateY(-50%);
+    transform: translateX(75%) translateY(-50%);
     /* top: 1px; */
     /* left: 1px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
-.container>.nav>.middle>.colors>.black {
+.container>.nav>.middle .colors>.black {
     background-color: black;
 }
 
-.container>.nav .middle .colors>.grey {
+.container>.nav>.middle .colors>.grey {
     background-color: grey;
 }
 
-.container>.nav .middle .colors>.blue {
-    background-color: blue;
+.container>.nav>.middle .colors>.blue {
+    background-color: #1A8CFF;
 }
 
-.container>.nav .middle .colors>.red {
+.container>.nav>.middle .colors>.red {
     background-color: red;
 }
 
-.container>.nav .middle .colors>.green {
-    background-color: green;
+.container>.nav>.middle .colors>.green {
+    background-color: #2BD965;
 }
 
 .container>.nav .middle .colors>.yellow {
-    background-color: yellow;
+    background-color: #FFDD33;
 }

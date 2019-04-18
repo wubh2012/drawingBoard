@@ -3,12 +3,14 @@ var log = console.log.bind(console)
 var mycanvas = document.querySelector('#mycanvas')
 var ctx = mycanvas.getContext('2d')
 var earserEnable = false
+var currenPenColor = 'black'
 
 var drawLine = function (x1, y1, x2, y2) {
     ctx.beginPath()
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
     ctx.lineWidth = 5
+    ctx.strokeStyle = currenPenColor
     // 先 closePath 方法闭合，然后调用 stroke, 这样画出的线就不会有很多的毛边
     ctx.closePath()
     ctx.stroke()
@@ -111,6 +113,27 @@ var listenerActions = function () {
     saveButton.addEventListener('click', function(){
         
     })
+
+    var penColors = document.querySelector('.colors')
+    penColors.addEventListener('click', function(event){
+        // log('colors', event)
+        var target = event.target
+        var color = target.dataset.color
+        // log('target color', color)
+        currenPenColor = color
+
+        var targetChild = target.parentElement.children
+        log('父节点的所有子节点', targetChild)
+        for (var i = 0; i < targetChild.length; i++) {
+            targetChild[i].classList.remove('selected')
+        }
+        target.classList.add('selected')
+
+
+    })
+
+
+
 }
 
 var autoSetCanvasSize = function (canvas) {
