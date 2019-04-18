@@ -105,17 +105,27 @@ var listenerActions = function () {
     })
 
     var clearButton = document.querySelector('.clearCanvas')
-    clearButton.addEventListener('click', function(){
+    clearButton.addEventListener('click', function () {
         ctx.clearRect(0, 0, mycanvas.width, mycanvas.height)
     })
 
     var saveButton = document.querySelector('.saveCanvas')
-    saveButton.addEventListener('click', function(){
+    saveButton.addEventListener('click', function () {
+        // 先填充背景色
+        mycanvas.fillStyle = "#FFFFFF"
         
+        // 转成 image data-url
+        var url = mycanvas.toDataURL("image/png", 1.0)
+        var link = document.createElement('a')
+        document.body.appendChild(link)
+        link.href = url
+        link.download = 'xxxxx'
+        link.click()
+
     })
 
     var penColors = document.querySelector('.colors')
-    penColors.addEventListener('click', function(event){
+    penColors.addEventListener('click', function (event) {
         // log('colors', event)
         var target = event.target
         var color = target.dataset.color
