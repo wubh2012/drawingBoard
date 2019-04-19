@@ -4,12 +4,13 @@ var mycanvas = document.querySelector('#mycanvas')
 var ctx = mycanvas.getContext('2d')
 var earserEnable = false
 var currenPenColor = 'black'
+var currentPenWidth = 3
 
 var drawLine = function (x1, y1, x2, y2) {
     ctx.beginPath()
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
-    ctx.lineWidth = 5
+    ctx.lineWidth = currentPenWidth
     ctx.strokeStyle = currenPenColor
     // 先 closePath 方法闭合，然后调用 stroke, 这样画出的线就不会有很多的毛边
     ctx.closePath()
@@ -94,14 +95,15 @@ var listenerCanvas = function (canvas) {
 
 }
 
-var listenerActions = function () {
+var listenerActions = function (canvas) {
     var earserButton = document.querySelector('.eraser')
-    var brushButton = document.querySelector('.brush')
     earserButton.addEventListener('click', function () {
         earserEnable = true
         earserButton.classList.add('active')
         brushButton.classList.remove('active')
     })
+    
+    var brushButton = document.querySelector('.brush')
     brushButton.addEventListener('click', function () {
         earserEnable = false
         brushButton.classList.add('active')
@@ -110,43 +112,69 @@ var listenerActions = function () {
 
     var clearButton = document.querySelector('.clearCanvas')
     clearButton.addEventListener('click', function () {
-        ctx.clearRect(0, 0, mycanvas.width, mycanvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
     })
 
     var saveButton = document.querySelector('.saveCanvas')
     saveButton.addEventListener('click', function () {
         // 先填充背景色
-        mycanvas.fillStyle = "#FFFFFF"
+        canvas.fillStyle = "#FFFFFF"
         
         // 转成 image data-url
-        var url = mycanvas.toDataURL("image/png", 1.0)
+        var url = canvas.toDataURL("image/png", 1.0)
         var link = document.createElement('a')
         document.body.appendChild(link)
         link.href = url
-        link.download = 'xxxxx'
+        link.download = 'Untitled'
         link.click()
 
     })
 
-    var penColors = document.querySelector('.colors')
+    
+
+}
+
+var listenerColors = function(){
+    var penColors = document.querySelector('.pensettings-colors')
     penColors.addEventListener('click', function (event) {
-        // log('colors', event)
         var target = event.target
         var color = target.dataset.color
-        // log('target color', color)
         currenPenColor = color
 
         var targetChild = target.parentElement.children
-        log('父节点的所有子节点', targetChild)
         for (var i = 0; i < targetChild.length; i++) {
             targetChild[i].classList.remove('selected')
         }
         target.classList.add('selected')
 
-
+    })
+}
+var listenerThickness = function(){
+    var thicknessPanel = document.querySelector('#thicknes-panel')
+    var closeBtn = document.querySelector('#thicknes-panel .close')
+    closeBtn.addEventListener('click', function(){
+        log('关闭')
+        thicknessPanel.style.display = 'none'
+    })
+    
+    var thicknes = document.querySelector('.pensettings-thickness .thickness')
+    thicknes.addEventListener('click', function(){
+        thicknessPanel.style.display = 'block'
     })
 
+    var thicknessContainer = document.querySelector('.thickness-container')
+    thicknessContainer.addEventListener('click', function(event){
+        var elementTarget = event.target
+        if(elementTarget.className === 'thickness-icon'){
+            // 触发
+            var text = elementTarget.nextElementSibling.innerText
+            thicknes.children[0].style.cssText = elementTarget.style.cssText
+            thicknes.children[1].innerText = text
+            currentPenWidth = parseInt(text) * 3
 
+            thicknessPanel.style.display = 'none'
+        }
+    })
 
 }
 
@@ -168,7 +196,9 @@ var autoSetCanvasSize = function (canvas) {
 var __main = function () {
     autoSetCanvasSize(mycanvas)
     listenerCanvas(mycanvas)
-    listenerActions()
+    listenerActions(mycanvas)
+    listenerThickness()
+    listenerColors()
 }
 
 __main()
