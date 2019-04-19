@@ -99,9 +99,13 @@ var listenerActions = function () {
     var brushButton = document.querySelector('.brush')
     earserButton.addEventListener('click', function () {
         earserEnable = true
+        earserButton.classList.add('active')
+        brushButton.classList.remove('active')
     })
     brushButton.addEventListener('click', function () {
         earserEnable = false
+        brushButton.classList.add('active')
+        earserButton.classList.remove('active')
     })
 
     var clearButton = document.querySelector('.clearCanvas')
