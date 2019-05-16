@@ -138,13 +138,15 @@ ol {
     display: none;
     position: absolute;
     width: 300px;
-    height: 100px;
     top: 0px;
     left: 0px;
-    padding: 24px 0;
+    padding: 20px 0 10px;
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(6, 6, 7, .4);
     background-color: white;
+}
+#thicknes-panel.active{
+    display: block;
 }
 
 #thicknes-panel>.close {
@@ -172,12 +174,15 @@ ol {
     display: inline-block;
 }
 
-#thicknes-panel li {
+.thickness-container > ul > li {
     float: left;
-    width: 30px;
-    height: 40px;
+    /* width: 40px; */
+    /* height: 40px; */
     margin-right: 12px;
+    /* border: 1px solid red; */
+    text-align: center;
 }
+
 
 .selected::after {
     content: '✔';
@@ -209,3 +214,4 @@ ol {
 .container>.nav .middle .pensettings-colors>.yellow {
     background-color: #FFDD33;
 }
+

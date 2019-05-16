@@ -153,29 +153,31 @@ var listenerThickness = function(){
     var thicknessPanel = document.querySelector('#thicknes-panel')
     var closeBtn = document.querySelector('#thicknes-panel .close')
     closeBtn.addEventListener('click', function(){
-        log('关闭')
-        thicknessPanel.style.display = 'none'
+        thicknessPanel.classList.remove('active')
     })
     
     var thicknes = document.querySelector('.pensettings-thickness .thickness')
     thicknes.addEventListener('click', function(){
-        thicknessPanel.style.display = 'block'
+        thicknessPanel.classList.add('active')
     })
 
-    var thicknessContainer = document.querySelector('.thickness-container')
-    thicknessContainer.addEventListener('click', function(event){
-        var elementTarget = event.target
-        if(elementTarget.className === 'thickness-icon'){
-            // 触发
-            var text = elementTarget.nextElementSibling.innerText
-            thicknes.children[0].style.cssText = elementTarget.style.cssText
+    var thicknessItems = document.querySelectorAll('.thickness-container .thickness')
+    log(thicknessItems)
+    for (let index = 0; index < thicknessItems.length; index++) {
+        const element = thicknessItems[index];
+        // 触发
+        element.addEventListener('click', function(event){
+            log('divtag click')
+            let divTag = event.currentTarget
+            let text = divTag.querySelector('span').innerText
+            let targetCss = divTag.querySelector('.thickness-icon').style.cssText
+            thicknes.children[0].style.cssText = targetCss
             thicknes.children[1].innerText = text
             currentPenWidth = parseInt(text) * 3
-
-            thicknessPanel.style.display = 'none'
-        }
-    })
-
+    
+            thicknessPanel.classList.remove('active')
+        })
+    }
 }
 
 var autoSetCanvasSize = function (canvas) {
